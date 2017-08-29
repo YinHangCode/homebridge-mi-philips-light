@@ -4,7 +4,6 @@ const inherits = require('util').inherits;
 const miio = require('miio');
 
 var Accessory, PlatformAccessory, Service, Characteristic, UUIDGen;
-var deviceThis, device;
 
 SmartBulb = function(platform, config) {
     this.init(platform, config);
@@ -15,23 +14,24 @@ SmartBulb = function(platform, config) {
     Characteristic = platform.Characteristic;
     UUIDGen = platform.UUIDGen;
     
-    deviceThis = this;
-    device = new miio.Device({
-        address: deviceThis.config['ip'],
-        token: deviceThis.config['token']
+    this.device = new miio.Device({
+        address: this.config['ip'],
+        token: this.config['token']
     });
     
     this.accessories = {};
     if(!this.config['lightDisable'] && this.config['lightName'] && this.config['lightName'] != "") {
-        this.accessories['lightAccessory'] = new SmartBulbLight();
+        this.accessories['lightAccessory'] = new SmartBulbLight(this);
     }
     
     return this.obj2array(this.accessories);
 }
 inherits(SmartBulb, Base);
 
-SmartBulbLight = function() {
-    this.name = deviceThis.config['lightName'];
+SmartBulbLight = function(dThis) {
+    this.device = dThis.device;
+    this.name = dThis.config['lightName'];
+    this.platform = dThis.platform;
 }
 
 SmartBulbLight.prototype.getServices = function() {
@@ -63,53 +63,53 @@ SmartBulbLight.prototype.getServices = function() {
 }
 
 SmartBulbLight.prototype.getPower = function(callback) {
-    device.call("get_prop", ["power"]).then(result => {
-        deviceThis.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]SmartBulb - Light - getPower: " + result);
+    this.device.call("get_prop", ["power"]).then(result => {
+        this.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]SmartBulb - Light - getPower: " + result);
         callback(null, result[0] === 'on' ? 1 : 0);
     }).catch(function(err) {
-        deviceThis.platform.log.error("[MiPhilipsLightPlatform][ERROR]SmartBulb - Light - getPower Error: " + err);
+        this.platform.log.error("[MiPhilipsLightPlatform][ERROR]SmartBulb - Light - getPower Error: " + err);
         callback(true);
     });
 }
 
 SmartBulbLight.prototype.setPower = function(value, callback) {
     if(value) {
-        device.call("set_power", ['on']);
+        this.device.call("set_power", ['on']);
     } else {
-        device.call("set_power", ['off']);
+        this.device.call("set_power", ['off']);
     }
     
     callback(null);    
 }
 
 SmartBulbLight.prototype.getBrightness = function(callback) {
-    device.call("get_prop", ["bright"]).then(result => {
-        deviceThis.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]SmartBulb - Light - getBrightness: " + result);
+    this.device.call("get_prop", ["bright"]).then(result => {
+        this.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]SmartBulb - Light - getBrightness: " + result);
         callback(null, result[0]);
     }).catch(function(err) {
-        deviceThis.platform.log.error("[MiPhilipsLightPlatform][ERROR]SmartBulb - Light - getBrightness Error: " + err);
+        this.platform.log.error("[MiPhilipsLightPlatform][ERROR]SmartBulb - Light - getBrightness Error: " + err);
         callback(true);
     });
 }
 
 SmartBulbLight.prototype.setBrightness = function(value, callback) {
-    device.call("set_bright", [value]);
+    this.device.call("set_bright", [value]);
     
     callback(null);    
 }
 
 SmartBulbLight.prototype.getSaturation = function(callback) {
-    device.call("get_prop", ["cct"]).then(result => {
-        deviceThis.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]SmartBulb - Light - getSaturation: " + result);
+    this.device.call("get_prop", ["cct"]).then(result => {
+        this.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]SmartBulb - Light - getSaturation: " + result);
         callback(null, result[0]);
     }).catch(function(err) {
-        deviceThis.platform.log.error("[MiPhilipsLightPlatform][ERROR]SmartBulb - Light - getSaturation Error: " + err);
+        this.platform.log.error("[MiPhilipsLightPlatform][ERROR]SmartBulb - Light - getSaturation Error: " + err);
         callback(true);
     });
 }
 
 SmartBulbLight.prototype.setSaturation = function(value, callback) {
-    device.call("set_cct", [value]);
+    this.device.call("set_cct", [value]);
     
     callback(null);    
 }

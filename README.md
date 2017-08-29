@@ -51,7 +51,9 @@ Support: Unknown
 ```
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx is token.
 ## Version Logs
-0.0.2
+### 0.0.3
+1.fixed bug that many of the same type of device conflict with each other.   
+### 0.0.2
 1.optimized code.   
 ### 0.0.1
 1.support for Philips Smart Bulb.   
