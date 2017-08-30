@@ -9,9 +9,9 @@ Base.prototype.init = function(platform, config) {
 }
 
 Base.prototype.obj2array = function(obj) {
-	var array = [];
+    var array = [];
     for(var item in obj) {
-		array.push(obj[item]);
-	}
-	return array;
+        array.push(obj[item]);
+    }
+    return array;
 }

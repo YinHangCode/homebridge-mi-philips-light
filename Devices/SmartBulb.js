@@ -23,8 +23,11 @@ SmartBulb = function(platform, config) {
     if(!this.config['lightDisable'] && this.config['lightName'] && this.config['lightName'] != "") {
         this.accessories['lightAccessory'] = new SmartBulbLight(this);
     }
+    var accessoriesArr = this.obj2array(this.accessories);
     
-    return this.obj2array(this.accessories);
+    this.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]Initializing " + this.config["type"] + " device: " + this.config["ip"] + ", accessories size: " + accessoriesArr.length);
+    
+    return accessoriesArr;
 }
 inherits(SmartBulb, Base);
 
@@ -63,11 +66,12 @@ SmartBulbLight.prototype.getServices = function() {
 }
 
 SmartBulbLight.prototype.getPower = function(callback) {
+    var that = this;
     this.device.call("get_prop", ["power"]).then(result => {
-        this.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]SmartBulb - Light - getPower: " + result);
+        that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]SmartBulb - Light - getPower: " + result);
         callback(null, result[0] === 'on' ? 1 : 0);
     }).catch(function(err) {
-        this.platform.log.error("[MiPhilipsLightPlatform][ERROR]SmartBulb - Light - getPower Error: " + err);
+        that.platform.log.error("[MiPhilipsLightPlatform][ERROR]SmartBulb - Light - getPower Error: " + err);
         callback(true);
     });
 }
@@ -83,11 +87,12 @@ SmartBulbLight.prototype.setPower = function(value, callback) {
 }
 
 SmartBulbLight.prototype.getBrightness = function(callback) {
+    var that = this;
     this.device.call("get_prop", ["bright"]).then(result => {
-        this.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]SmartBulb - Light - getBrightness: " + result);
+        that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]SmartBulb - Light - getBrightness: " + result);
         callback(null, result[0]);
     }).catch(function(err) {
-        this.platform.log.error("[MiPhilipsLightPlatform][ERROR]SmartBulb - Light - getBrightness Error: " + err);
+        that.platform.log.error("[MiPhilipsLightPlatform][ERROR]SmartBulb - Light - getBrightness Error: " + err);
         callback(true);
     });
 }
@@ -99,11 +104,12 @@ SmartBulbLight.prototype.setBrightness = function(value, callback) {
 }
 
 SmartBulbLight.prototype.getSaturation = function(callback) {
+    var that = this;
     this.device.call("get_prop", ["cct"]).then(result => {
-        this.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]SmartBulb - Light - getSaturation: " + result);
+        that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]SmartBulb - Light - getSaturation: " + result);
         callback(null, result[0]);
     }).catch(function(err) {
-        this.platform.log.error("[MiPhilipsLightPlatform][ERROR]SmartBulb - Light - getSaturation Error: " + err);
+        that.platform.log.error("[MiPhilipsLightPlatform][ERROR]SmartBulb - Light - getSaturation Error: " + err);
         callback(true);
     });
 }

@@ -70,23 +70,26 @@ MiPhilipsLightPlatform.prototype = {
     accessories: function(callback) {
         var myAccessories = [];
 
-        var cfgAccessories = this.config['accessories'];
-        if(null == cfgAccessories) {
-            return;
-        }
-        
-        for (var i = 0; i < cfgAccessories.length; i++) {
-            var cfgAccessory = cfgAccessories[i];
-            if (cfgAccessory['type'] == "SmartBulb") {
-                new SmartBulb(this, cfgAccessory).forEach(function(accessory, index, arr){
-                    myAccessories.push(accessory);
-                });
-            } else if (cfgAccessory['type'] == "TableLamp2") {
+        var deviceCfgs = this.config['deviceCfgs'];
+        if(deviceCfgs instanceof Array) {
+            for (var i = 0; i < deviceCfgs.length; i++) {
+                var deviceCfg = deviceCfgs[i];
+                if(null == deviceCfg['type'] || "" == deviceCfg['type'] || null == deviceCfg['token'] || "" == deviceCfg['token'] || null == deviceCfg['ip'] || "" == deviceCfg['ip']) {
+                    continue;
+                }
+                
+                if (deviceCfg['type'] == "SmartBulb") {
+                    new SmartBulb(this, deviceCfg).forEach(function(accessory, index, arr){
+                        myAccessories.push(accessory);
+                    });
+                } else if (deviceCfg['type'] == "TableLamp2") {
 
-            } else if (cfgAccessory['type'] == "CeilingLamp") {
+                } else if (deviceCfg['type'] == "CeilingLamp") {
 
-            } else {
+                } else {
+                }
             }
+            this.log.info("[MiPhilipsLightPlatform][INFO]device size: " + deviceCfgs.length + ", accessories size: " + myAccessories.length);
         }
 
         callback(myAccessories);
