@@ -2,8 +2,9 @@
 [![npm version](https://badge.fury.io/js/homebridge-mi-philips-light.svg)](https://badge.fury.io/js/homebridge-mi-philips-light)
 
 XiaoMi Philips light plugins for HomeBridge.   
+   
 Thanks for [nfarina](https://github.com/nfarina)(the author of [homebridge](https://github.com/nfarina/homebridge)), [OpenMiHome](https://github.com/OpenMiHome/mihome-binary-protocol), [aholstenson](https://github.com/aholstenson)(the author of [miio](https://github.com/aholstenson/miio)), all other developer and testers.   
-
+   
 **Note: I have only a part of these devices, so some devices don't have tested. If you find bugs, please submit them to [issues](https://github.com/YinHangCode/homebridge-mi-philips-light/issues) or [QQ Group: 107927710](//shang.qq.com/wpa/qunwpa?idkey=8b9566598f40dd68412065ada24184ef72c6bddaa11525ca26c4e1536a8f2a3d).**   
 
 ![](https://raw.githubusercontent.com/YinHangCode/homebridge-mi-philips-light/master/images/SmartBulb.jpg)
@@ -37,7 +38,7 @@ npm install -g miio homebridge-mi-philips-light
 }]
 ```
 ## Get token
-Open command prompt or terminal. Run following command:.
+Open command prompt or terminal. Run following command:
 ```
 miio --discover
 ```
@@ -49,8 +50,17 @@ Address: 192.168.88.xx
 Token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx via auto-token   
 Support: Unknown   
 ```
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx is token.
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" is token.   
+If token is "???", then reset device and connect device created Wi-Fi hotspot.   
+Run following command:   
+```
+miio --discover --sync
+```
+Wait until you get output.   
+For more information about token, please refer to [OpenMiHome](https://github.com/OpenMiHome/mihome-binary-protocol) and [miio](https://github.com/aholstenson/miio).   
 ## Version Logs
+### 0.0.5
+1.optimized code.   
 ### 0.0.4
 1.fixed bug that 'log of undefined' error.    
 2.config item 'accessories' renamed 'deviceCfgs'.   
