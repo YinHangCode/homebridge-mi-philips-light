@@ -83,7 +83,7 @@ SmartBulbLight.prototype.setPower = function(value, callback) {
         if(result[0] === "ok") {
             callback(null);
         } else {
-            callback(result[0]);
+            callback(new Error(result[0]));
         }
     }).catch(function(err) {
         that.platform.log.error("[MiPhilipsLightPlatform][ERROR]SmartBulb - Light - setPower Error: " + err);
@@ -109,7 +109,7 @@ SmartBulbLight.prototype.setBrightness = function(value, callback) {
         if(result[0] === "ok") {
             callback(null);
         } else {
-            callback(result[0]);
+            callback(new Error(result[0]));
         }
     }).catch(function(err) {
         that.platform.log.error("[MiPhilipsLightPlatform][ERROR]SmartBulb - Light - setBrightness Error: " + err);
@@ -135,7 +135,7 @@ SmartBulbLight.prototype.setSaturation = function(value, callback) {
         if(result[0] === "ok") {
             callback(null);
         } else {
-            callback(result[0]);
+            callback(new Error(result[0]));
         }
     }).catch(function(err) {
         that.platform.log.error("[MiPhilipsLightPlatform][ERROR]SmartBulb - Light - setSaturation Error: " + err);
