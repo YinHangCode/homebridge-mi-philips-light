@@ -1,4 +1,5 @@
 require('./Devices/SmartBulb');
+require('./Devices/TableLamp2');
 
 var fs = require('fs');
 var packageFile = require("./package.json");
@@ -58,11 +59,11 @@ function MiPhilipsLightPlatform(log, config, api) {
         this.api = api;
     }
     
-    this.log.info("[MiPhilipsLightPlatform][INFO]*********************************************************************");
-    this.log.info("[MiPhilipsLightPlatform][INFO]           MiPhilipsLightPlatform v%s By YinHang", packageFile.version);
-    this.log.info("[MiPhilipsLightPlatform][INFO]  GitHub: https://github.com/YinHangCode/homebridge-mi-philips-light ");
-    this.log.info("[MiPhilipsLightPlatform][INFO]                                                QQ Group: 107927710  ");
-    this.log.info("[MiPhilipsLightPlatform][INFO]*********************************************************************");
+    this.log.info("[MiPhilipsLightPlatform][INFO]********************************************************************");
+    this.log.info("[MiPhilipsLightPlatform][INFO]          MiPhilipsLightPlatform v%s By YinHang", packageFile.version);
+    this.log.info("[MiPhilipsLightPlatform][INFO] GitHub: https://github.com/YinHangCode/homebridge-mi-philips-light ");
+    this.log.info("[MiPhilipsLightPlatform][INFO]                                                QQ Group: 107927710 ");
+    this.log.info("[MiPhilipsLightPlatform][INFO]********************************************************************");
     this.log.info("[MiPhilipsLightPlatform][INFO]start success...");
 }
 
@@ -83,7 +84,9 @@ MiPhilipsLightPlatform.prototype = {
                         myAccessories.push(accessory);
                     });
                 } else if (deviceCfg['type'] == "TableLamp2") {
-
+                    new TableLamp2(this, deviceCfg).forEach(function(accessory, index, arr){
+                        myAccessories.push(accessory);
+                    });
                 } else if (deviceCfg['type'] == "CeilingLamp") {
 
                 } else {

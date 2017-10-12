@@ -34,6 +34,13 @@ npm install -g miio homebridge-mi-philips-light
         "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
         "lightName": "living room bulb",
         "lightDisable": false
+    }, {
+        "type": "TableLamp2",
+        "ip": "192.168.88.xx",
+        "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "mainLightName": "living room table lamp",
+        "secondLightName": "living room table lamp amb",
+        "secondLightDisable": false
     }]
 }]
 ```
@@ -59,6 +66,8 @@ miio --discover --sync
 Wait until you get output.   
 For more information about token, please refer to [OpenMiHome](https://github.com/OpenMiHome/mihome-binary-protocol) and [miio](https://github.com/aholstenson/miio).   
 ## Version Logs
+### 0.1.0
+1.add support for Philips Table Lamp 2.   
 ### 0.0.6
 1.optimized code.   
 ### 0.0.5
