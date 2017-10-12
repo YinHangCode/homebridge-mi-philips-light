@@ -13,7 +13,7 @@ Thanks for [nfarina](https://github.com/nfarina)(the author of [homebridge](http
 
 ## Supported Devices
 1.SmartBulb(飞利浦智睿球泡灯)   
-2.TableLamp2(米家飞利浦智睿台灯二代) --- coming soon   
+2.TableLamp2(米家飞利浦智睿台灯二代)   
 3.CeilingLamp(飞利浦智睿吸顶灯) --- coming soon   
 
 ## Installation
