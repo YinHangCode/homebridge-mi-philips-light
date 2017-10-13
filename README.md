@@ -40,7 +40,9 @@ npm install -g miio homebridge-mi-philips-light
         "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
         "mainLightName": "living room table lamp",
         "secondLightName": "living room table lamp amb",
-        "secondLightDisable": false
+        "secondLightDisable": false,
+        "eyecareSwitchName": "living room table lamp eyecare model",
+        "eyecareSwitchDisable": false
     }]
 }]
 ```
@@ -66,6 +68,8 @@ miio --discover --sync
 Wait until you get output.   
 For more information about token, please refer to [OpenMiHome](https://github.com/OpenMiHome/mihome-binary-protocol) and [miio](https://github.com/aholstenson/miio).   
 ## Version Logs
+### 0.1.1
+1.add Philips Table Lamp 2 eyecare mode switch accessory.   
 ### 0.1.0
 1.add support for Philips Table Lamp 2.   
 ### 0.0.6
