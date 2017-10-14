@@ -60,12 +60,14 @@ function MiPhilipsLightPlatform(log, config, api) {
         this.api = api;
     }
     
+    
     this.log.info("[MiPhilipsLightPlatform][INFO]********************************************************************");
     this.log.info("[MiPhilipsLightPlatform][INFO]          MiPhilipsLightPlatform v%s By YinHang", packageFile.version);
     this.log.info("[MiPhilipsLightPlatform][INFO] GitHub: https://github.com/YinHangCode/homebridge-mi-philips-light ");
     this.log.info("[MiPhilipsLightPlatform][INFO]                                                QQ Group: 107927710 ");
     this.log.info("[MiPhilipsLightPlatform][INFO]********************************************************************");
     this.log.info("[MiPhilipsLightPlatform][INFO]start success...");
+    
 }
 
 MiPhilipsLightPlatform.prototype = {
@@ -73,6 +75,7 @@ MiPhilipsLightPlatform.prototype = {
         var myAccessories = [];
 
         var deviceCfgs = this.config['deviceCfgs'];
+        
         if(deviceCfgs instanceof Array) {
             for (var i = 0; i < deviceCfgs.length; i++) {
                 var deviceCfg = deviceCfgs[i];

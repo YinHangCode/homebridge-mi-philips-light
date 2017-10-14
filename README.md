@@ -47,6 +47,8 @@ npm install -g miio homebridge-mi-philips-light
         "type": "CeilingLamp",
         "ip": "192.168.88.xx",
         "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "updatetimer" : true, //optional
+        "interval" : 3,//optional
         "lightName": "living room ceiling lamp",
         "lightDisable": false
     }]
