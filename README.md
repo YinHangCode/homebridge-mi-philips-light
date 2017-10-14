@@ -14,7 +14,7 @@ Thanks for [nfarina](https://github.com/nfarina)(the author of [homebridge](http
 ## Supported Devices
 1.SmartBulb(飞利浦智睿球泡灯)   
 2.TableLamp2(米家飞利浦智睿台灯二代)   
-3.CeilingLamp(飞利浦智睿吸顶灯) --- coming soon   
+3.CeilingLamp(飞利浦智睿吸顶灯)  
 
 ## Installation
 1. Install HomeBridge, please follow it's [README](https://github.com/nfarina/homebridge/blob/master/README.md).   
@@ -43,6 +43,14 @@ npm install -g miio homebridge-mi-philips-light
         "secondLightDisable": false,
         "eyecareSwitchName": "living room table lamp eyecare model",
         "eyecareSwitchDisable": false
+    }, {
+        "type": "CeilingLamp",
+        "ip": "192.168.88.xx",
+        "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "updatetimer" : true, //optional
+        "interval" : 3,//optional
+        "lightName": "living room ceiling lamp",
+        "lightDisable": false
     }]
 }]
 ```
@@ -68,6 +76,8 @@ miio --discover --sync
 Wait until you get output.   
 For more information about token, please refer to [OpenMiHome](https://github.com/OpenMiHome/mihome-binary-protocol) and [miio](https://github.com/aholstenson/miio).   
 ## Version Logs
+### 0.1.2
+1.add support for Philips Ceiling Lamp.  
 ### 0.1.1
 1.add Philips Table Lamp 2 eyecare mode switch accessory.   
 ### 0.1.0
