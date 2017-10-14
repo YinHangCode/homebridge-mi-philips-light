@@ -1,5 +1,6 @@
 require('./Devices/SmartBulb');
 require('./Devices/TableLamp2');
+require('./Devices/CeilingLamp');
 
 var fs = require('fs');
 var packageFile = require("./package.json");
@@ -88,7 +89,9 @@ MiPhilipsLightPlatform.prototype = {
                         myAccessories.push(accessory);
                     });
                 } else if (deviceCfg['type'] == "CeilingLamp") {
-
+                    new CeilingLamp(this, deviceCfg).forEach(function(accessory, index, arr){
+                        myAccessories.push(accessory);
+                    });
                 } else {
                 }
             }
