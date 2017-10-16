@@ -57,9 +57,14 @@ SmartBulbLight.prototype.getServices = function() {
         .on('get', this.getBrightness.bind(this))
         .on('set', this.setBrightness.bind(this));
     lightService
-        .addCharacteristic(Characteristic.Saturation)
-        .on('get', this.getSaturation.bind(this))
-        .on('set', this.setSaturation.bind(this));
+        .addCharacteristic(Characteristic.ColorTemperature)
+        .setProps({
+            minValue: 50,
+            maxValue: 400,
+            minStep: 1
+        })
+        .on('get', this.getColorTemperature.bind(this))
+        .on('set', this.setColorTemperature.bind(this));
     services.push(lightService);
 
     return services;
@@ -69,7 +74,7 @@ SmartBulbLight.prototype.getPower = function(callback) {
     var that = this;
     this.device.call("get_prop", ["power"]).then(result => {
         that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]SmartBulb - Light - getPower: " + result);
-        callback(null, result[0] === 'on' ? 1 : 0);
+        callback(null, result[0] === 'on' ? true : false);
     }).catch(function(err) {
         that.platform.log.error("[MiPhilipsLightPlatform][ERROR]SmartBulb - Light - getPower Error: " + err);
         callback(err);
@@ -104,41 +109,51 @@ SmartBulbLight.prototype.getBrightness = function(callback) {
 
 SmartBulbLight.prototype.setBrightness = function(value, callback) {
     var that = this;
-    this.device.call("set_bright", [value]).then(result => {
-        that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]SmartBulb - Light - setBrightness Result: " + result);
-        if(result[0] === "ok") {
-            callback(null);
-        } else {
-            callback(new Error(result[0]));
-        }
-    }).catch(function(err) {
-        that.platform.log.error("[MiPhilipsLightPlatform][ERROR]SmartBulb - Light - setBrightness Error: " + err);
-        callback(err);
-    });
+    if(value > 0) {
+        this.device.call("set_bright", [value]).then(result => {
+            that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]SmartBulb - Light - setBrightness Result: " + result);
+            if(result[0] === "ok") {
+                callback(null);
+            } else {
+                callback(new Error(result[0]));
+            }
+        }).catch(function(err) {
+            that.platform.log.error("[MiPhilipsLightPlatform][ERROR]SmartBulb - Light - setBrightness Error: " + err);
+            callback(err);
+        });
+    } else {
+        callback(null);
+    }
 }
 
-SmartBulbLight.prototype.getSaturation = function(callback) {
+SmartBulbLight.prototype.getColorTemperature = function(callback) {
     var that = this;
     this.device.call("get_prop", ["cct"]).then(result => {
-        that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]SmartBulb - Light - getSaturation: " + result);
-        callback(null, result[0]);
+        that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]SmartBulb - Light - getColorTemperature: " + result);
+        callback(null, result[0] * 350);
     }).catch(function(err) {
-        that.platform.log.error("[MiPhilipsLightPlatform][ERROR]SmartBulb - Light - getSaturation Error: " + err);
+        that.platform.log.error("[MiPhilipsLightPlatform][ERROR]SmartBulb - Light - getColorTemperature Error: " + err);
         callback(err);
     });
 }
 
-SmartBulbLight.prototype.setSaturation = function(value, callback) {
+SmartBulbLight.prototype.setColorTemperature = function(value, callback) {
+    value = value - 50;
+    value = value / 350 * 100;
+    value = Math.round(100 - value);
+    if(value == 0) {
+        value = 1;
+    }
     var that = this;
     this.device.call("set_cct", [value]).then(result => {
-        that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]SmartBulb - Light - setSaturation Result: " + result);
+        that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]SmartBulb - Light - setColorTemperature Result: " + result);
         if(result[0] === "ok") {
             callback(null);
         } else {
             callback(new Error(result[0]));
         }
     }).catch(function(err) {
-        that.platform.log.error("[MiPhilipsLightPlatform][ERROR]SmartBulb - Light - setSaturation Error: " + err);
+        that.platform.log.error("[MiPhilipsLightPlatform][ERROR]SmartBulb - Light - setColorTemperature Error: " + err);
         callback(err);
     });
 }
