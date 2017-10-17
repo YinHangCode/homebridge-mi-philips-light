@@ -77,9 +77,9 @@ Wait until you get output.
 For more information about token, please refer to [OpenMiHome](https://github.com/OpenMiHome/mihome-binary-protocol) and [miio](https://github.com/aholstenson/miio).   
 ## Version Logs
 ### 0.1.3
-1.Fix the bug of ColorTemperature. 
+1.fix the bug of ColorTemperature.   
 ### 0.1.2
-1.add support for Philips Ceiling Lamp.  
+1.add support for Philips Ceiling Lamp.   
 ### 0.1.1
 1.add Philips Table Lamp 2 eyecare mode switch accessory.   
 ### 0.1.0
