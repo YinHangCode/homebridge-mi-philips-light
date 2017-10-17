@@ -3,7 +3,7 @@
 
 XiaoMi Philips light plugins for HomeBridge.   
    
-Thanks for [nfarina](https://github.com/nfarina)(the author of [homebridge](https://github.com/nfarina/homebridge)), [OpenMiHome](https://github.com/OpenMiHome/mihome-binary-protocol), [aholstenson](https://github.com/aholstenson)(the author of [miio](https://github.com/aholstenson/miio)), all other developer and testers.   
+Thanks for [nfarina](https://github.com/nfarina)(the author of [homebridge](https://github.com/nfarina/homebridge)), [OpenMiHome](https://github.com/OpenMiHome/mihome-binary-protocol), [aholstenson](https://github.com/aholstenson)(the author of [miio](https://github.com/aholstenson/miio)), [Zzm317](https://github.com/Zzm317), all other developer and testers.   
    
 **Note: I have only a part of these devices, so some devices don't have tested. If you find bugs, please submit them to [issues](https://github.com/YinHangCode/homebridge-mi-philips-light/issues) or [QQ Group: 107927710](//shang.qq.com/wpa/qunwpa?idkey=8b9566598f40dd68412065ada24184ef72c6bddaa11525ca26c4e1536a8f2a3d).**   
 
@@ -14,7 +14,7 @@ Thanks for [nfarina](https://github.com/nfarina)(the author of [homebridge](http
 ## Supported Devices
 1.SmartBulb(飞利浦智睿球泡灯)   
 2.TableLamp2(米家飞利浦智睿台灯二代)   
-3.CeilingLamp(飞利浦智睿吸顶灯)  
+3.CeilingLamp(飞利浦智睿吸顶灯)   
 
 ## Installation
 1. Install HomeBridge, please follow it's [README](https://github.com/nfarina/homebridge/blob/master/README.md).   
@@ -47,10 +47,10 @@ npm install -g miio homebridge-mi-philips-light
         "type": "CeilingLamp",
         "ip": "192.168.88.xx",
         "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-        "updatetimer" : true, //optional
-        "interval" : 3,//optional
         "lightName": "living room ceiling lamp",
-        "lightDisable": false
+        "lightDisable": false,
+        "updatetimer": false,
+        "interval": 3
     }]
 }]
 ```
