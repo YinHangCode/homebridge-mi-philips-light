@@ -1,6 +1,6 @@
-require('./Devices/SmartBulb');
-require('./Devices/TableLamp2');
-require('./Devices/CeilingLamp');
+require('./Devices/MiPhilipsSmartBulb');
+require('./Devices/MiPhilipsTableLamp2');
+require('./Devices/MiPhilipsCeilingLamp');
 
 var fs = require('fs');
 var packageFile = require("./package.json");
