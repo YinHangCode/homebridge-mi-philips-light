@@ -4,7 +4,7 @@ const inherits = require('util').inherits;
 const miio = require('miio');
 
 var Accessory, PlatformAccessory, Service, Characteristic, UUIDGen;
-TableLamp2 = function(platform, config) {
+MiPhilipsTableLamp2 = function(platform, config) {
     this.init(platform, config);
     
     Accessory = platform.Accessory;
@@ -20,7 +20,7 @@ TableLamp2 = function(platform, config) {
     
     this.accessories = {};
     if(this.config['mainLightName'] && this.config['mainLightName'] != "") {
-        this.accessories['mainLightAccessory'] = new TableLamp2MainLight(this);
+        this.accessories['mainLightAccessory'] = new MiPhilipsTableLamp2Light(this);
     }
     var accessoriesArr = this.obj2array(this.accessories);
     
@@ -28,9 +28,9 @@ TableLamp2 = function(platform, config) {
     
     return accessoriesArr;
 }
-inherits(TableLamp2, Base);
+inherits(MiPhilipsTableLamp2, Base);
 
-TableLamp2MainLight = function(dThis) {
+MiPhilipsTableLamp2Light = function(dThis) {
     this.device = dThis.device;
     this.name = dThis.config['mainLightName'];
     this.secondLightDisable = dThis.config['secondLightDisable'];
@@ -40,7 +40,7 @@ TableLamp2MainLight = function(dThis) {
     this.platform = dThis.platform;
 }
 
-TableLamp2MainLight.prototype.getServices = function() {
+MiPhilipsTableLamp2Light.prototype.getServices = function() {
     var that = this;
     var services = [];
 
@@ -63,16 +63,16 @@ TableLamp2MainLight.prototype.getServices = function() {
     mainLightOnCharacteristic
         .on('get', function(callback) {
             this.device.call("get_prop", ["power"]).then(result => {
-                that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]TableLamp2 - MainLight - getPower: " + result);
+                that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]MiPhilipsTableLamp2 - MainLight - getPower: " + result);
                 callback(null, result[0] === 'on' ? true : false);
             }).catch(function(err) {
-                that.platform.log.error("[MiPhilipsLightPlatform][ERROR]TableLamp2 - MainLight - getPower Error: " + err);
+                that.platform.log.error("[MiPhilipsLightPlatform][ERROR]MiPhilipsTableLamp2 - MainLight - getPower Error: " + err);
                 callback(err);
             });
         }.bind(this))
         .on('set', function(value, callback) {
             that.device.call("set_power", [value ? "on" : "off"]).then(result => {
-                that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]TableLamp2 - MainLight - setPower Result: " + result);
+                that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]MiPhilipsTableLamp2 - MainLight - setPower Result: " + result);
                 if(result[0] === "ok") {
                     if(value) {
                         eyecareSwitchOnCharacteristic.getValue();
@@ -90,7 +90,7 @@ TableLamp2MainLight.prototype.getServices = function() {
                     callback(new Error(result[0]));
                 }
             }).catch(function(err) {
-                that.platform.log.error("[MiPhilipsLightPlatform][ERROR]TableLamp2 - MainLight - setPower Error: " + err);
+                that.platform.log.error("[MiPhilipsLightPlatform][ERROR]MiPhilipsTableLamp2 - MainLight - setPower Error: " + err);
                 callback(err);
             });
         }.bind(this));
@@ -98,24 +98,24 @@ TableLamp2MainLight.prototype.getServices = function() {
         .addCharacteristic(Characteristic.Brightness)
         .on('get', function(callback) {
             this.device.call("get_prop", ["bright"]).then(result => {
-                that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]TableLamp2 - MainLight - getBrightness: " + result);
+                that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]MiPhilipsTableLamp2 - MainLight - getBrightness: " + result);
                 callback(null, result[0]);
             }).catch(function(err) {
-                that.platform.log.error("[MiPhilipsLightPlatform][ERROR]TableLamp2 - MainLight - getBrightness Error: " + err);
+                that.platform.log.error("[MiPhilipsLightPlatform][ERROR]MiPhilipsTableLamp2 - MainLight - getBrightness Error: " + err);
                 callback(err);
             });
         }.bind(this))
         .on('set', function(value, callback) {
             if(value > 0) {
                 this.device.call("set_bright", [value]).then(result => {
-                    that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]TableLamp2 - MainLight - setBrightness Result: " + result);
+                    that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]MiPhilipsTableLamp2 - MainLight - setBrightness Result: " + result);
                     if(result[0] === "ok") {
                         callback(null);
                     } else {
                         callback(new Error(result[0]));
                     }
                 }).catch(function(err) {
-                    that.platform.log.error("[MiPhilipsLightPlatform][ERROR]TableLamp2 - MainLight - setBrightness Error: " + err);
+                    that.platform.log.error("[MiPhilipsLightPlatform][ERROR]MiPhilipsTableLamp2 - MainLight - setBrightness Error: " + err);
                     callback(err);
                 });
             } else {
@@ -127,16 +127,16 @@ TableLamp2MainLight.prototype.getServices = function() {
     secondLightOnCharacteristic
         .on('get', function(callback) {
             this.device.call("get_prop", ["ambstatus"]).then(result => {
-                that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]TableLamp2 - SecondLight - getPower: " + result);
+                that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]MiPhilipsTableLamp2 - SecondLight - getPower: " + result);
                 callback(null, result[0] === 'on' && mainLightOnCharacteristic.value ? true : false);
             }).catch(function(err) {
-                that.platform.log.error("[MiPhilipsLightPlatform][ERROR]TableLamp2 - SecondLight - getPower Error: " + err);
+                that.platform.log.error("[MiPhilipsLightPlatform][ERROR]MiPhilipsTableLamp2 - SecondLight - getPower Error: " + err);
                 callback(err);
             });
         }.bind(this))
         .on('set', function(value, callback) {
             that.device.call("enable_amb", [value ? "on" : "off"]).then(result => {
-                that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]TableLamp2 - SecondLight - setPower Result: " + result);
+                that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]MiPhilipsTableLamp2 - SecondLight - setPower Result: " + result);
                 if(result[0] === "ok") {
                     if(value) {
                         mainLightOnCharacteristic.getValue();
@@ -147,7 +147,7 @@ TableLamp2MainLight.prototype.getServices = function() {
                     callback(new Error(result[0]));
                 }
             }).catch(function(err) {
-                that.platform.log.error("[MiPhilipsLightPlatform][ERROR]TableLamp2 - SecondLight - setPower Error: " + err);
+                that.platform.log.error("[MiPhilipsLightPlatform][ERROR]MiPhilipsTableLamp2 - SecondLight - setPower Error: " + err);
                 callback(err);
             });
         }.bind(this));
@@ -155,24 +155,24 @@ TableLamp2MainLight.prototype.getServices = function() {
         .addCharacteristic(Characteristic.Brightness)
         .on('get', function(callback) {
             this.device.call("get_prop", ["ambvalue"]).then(result => {
-                that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]TableLamp2 - SecondLight - getBrightness: " + result);
+                that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]MiPhilipsTableLamp2 - SecondLight - getBrightness: " + result);
                 callback(null, result[0]);
             }).catch(function(err) {
-                that.platform.log.error("[MiPhilipsLightPlatform][ERROR]TableLamp2 - SecondLight - getBrightness Error: " + err);
+                that.platform.log.error("[MiPhilipsLightPlatform][ERROR]MiPhilipsTableLamp2 - SecondLight - getBrightness Error: " + err);
                 callback(err);
             });
         }.bind(this))
         .on('set', function(value, callback) {
             if(value > 0) {
                 this.device.call("set_amb_bright", [value]).then(result => {
-                    that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]TableLamp2 - SecondLight - setBrightness Result: " + result);
+                    that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]MiPhilipsTableLamp2 - SecondLight - setBrightness Result: " + result);
                     if(result[0] === "ok") {
                         callback(null);
                     } else {
                         callback(new Error(result[0]));
                     }
                 }).catch(function(err) {
-                    that.platform.log.error("[MiPhilipsLightPlatform][ERROR]TableLamp2 - SecondLight - setBrightness Error: " + err);
+                    that.platform.log.error("[MiPhilipsLightPlatform][ERROR]MiPhilipsTableLamp2 - SecondLight - setBrightness Error: " + err);
                     callback(err);
                 });
             } else {
@@ -186,16 +186,16 @@ TableLamp2MainLight.prototype.getServices = function() {
     eyecareSwitchOnCharacteristic
         .on('get', function(callback) {
             this.device.call("get_prop", ["eyecare"]).then(result => {
-                that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]TableLamp2 - EyecareSwitch - getPower: " + result);
+                that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]MiPhilipsTableLamp2 - EyecareSwitch - getPower: " + result);
                 callback(null, result[0] === 'on' && mainLightOnCharacteristic.value ? true : false);
             }).catch(function(err) {
-                that.platform.log.error("[MiPhilipsLightPlatform][ERROR]TableLamp2 - EyecareSwitch - getPower Error: " + err);
+                that.platform.log.error("[MiPhilipsLightPlatform][ERROR]MiPhilipsTableLamp2 - EyecareSwitch - getPower Error: " + err);
                 callback(err);
             });
         }.bind(this))
         .on('set', function(value, callback) {
             that.device.call("set_eyecare", [value ? "on" : "off"]).then(result => {
-                that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]TableLamp2 - EyecareSwitch - setPower Result: " + result);
+                that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]MiPhilipsTableLamp2 - EyecareSwitch - setPower Result: " + result);
                 if(result[0] === "ok") {
                     if(value) {
                         mainLightOnCharacteristic.getValue();
@@ -206,7 +206,7 @@ TableLamp2MainLight.prototype.getServices = function() {
                     callback(new Error(result[0]));
                 }
             }).catch(function(err) {
-                that.platform.log.error("[MiPhilipsLightPlatform][ERROR]TableLamp2 - EyecareSwitch - setPower Error: " + err);
+                that.platform.log.error("[MiPhilipsLightPlatform][ERROR]MiPhilipsTableLamp2 - EyecareSwitch - setPower Error: " + err);
                 callback(err);
             });
         }.bind(this));

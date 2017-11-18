@@ -29,13 +29,13 @@ npm install -g miio homebridge-mi-philips-light
 "platforms": [{
     "platform": "MiPhilipsLightPlatform",
     "deviceCfgs": [{
-        "type": "SmartBulb",
+        "type": "MiSmartBulb",
         "ip": "192.168.88.xx",
         "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
         "lightName": "living room bulb",
         "lightDisable": false
     }, {
-        "type": "TableLamp2",
+        "type": "MiTableLamp2",
         "ip": "192.168.88.xx",
         "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
         "mainLightName": "living room table lamp",
@@ -44,7 +44,7 @@ npm install -g miio homebridge-mi-philips-light
         "eyecareSwitchName": "living room table lamp eyecare model",
         "eyecareSwitchDisable": false
     }, {
-        "type": "CeilingLamp",
+        "type": "MiCeilingLamp",
         "ip": "192.168.88.xx",
         "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
         "lightName": "living room ceiling lamp",
@@ -55,6 +55,13 @@ npm install -g miio homebridge-mi-philips-light
 }]
 ```
 ## Get token
+### Get token by miio2.db
+setup MiJia(MiHome) app in your android device or android virtual machine.   
+open MiJia(MiHome) app and login your account.   
+refresh device list and make sure device display in the device list.   
+get miio2.db(path: /data/data/com.xiaomi.smarthome/databases/miio2.db) file from your android device or android virtual machine.   
+open website [[Get MiIo Tokens By DataBase File](http://miio2.yinhh.com/)], upload miio2.db file and submit.    
+### Get token by network
 Open command prompt or terminal. Run following command:
 ```
 miio --discover
@@ -76,25 +83,27 @@ miio --discover --sync
 Wait until you get output.   
 For more information about token, please refer to [OpenMiHome](https://github.com/OpenMiHome/mihome-binary-protocol) and [miio](https://github.com/aholstenson/miio).   
 ## Version Logs
-### 0.2.1
+### 0.2.2 (2017-11-18)
+1.modify class name, reduce the probability of conflicts due to the same class name and other plugins.   
+### 0.2.1 (2017-10-23)
 1.fix the bug of SmartBulb ColorTemperature.   
 2.fix the bug of CeilingLamp ColorTemperature.   
-### 0.2.0
+### 0.2.0 (2017-10-14)
 1.add support for Philips Ceiling Lamp.   
-### 0.1.1
+### 0.1.1 (2017-10-14)
 1.add Philips Table Lamp 2 eyecare mode switch accessory.   
-### 0.1.0
+### 0.1.0 (2017-10-12)
 1.add support for Philips Table Lamp 2.   
-### 0.0.6
+### 0.0.6 (2017-09-11)
 1.optimized code.   
-### 0.0.5
+### 0.0.5 (2017-09-05)
 1.optimized code.   
-### 0.0.4
+### 0.0.4 (2017-08-30)
 1.fixed bug that 'log of undefined' error.    
 2.config item 'accessories' renamed 'deviceCfgs'.   
-### 0.0.3
+### 0.0.3 (2017-08-29)
 1.fixed bug that many of the same type of device conflict with each other.   
-### 0.0.2
+### 0.0.2 (2017-08-27)
 1.optimized code.   
-### 0.0.1
+### 0.0.1 (2017-08-27)
 1.support for Philips Smart Bulb.   

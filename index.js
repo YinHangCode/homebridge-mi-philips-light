@@ -83,16 +83,16 @@ MiPhilipsLightPlatform.prototype = {
                     continue;
                 }
                 
-                if (deviceCfg['type'] == "SmartBulb") {
-                    new SmartBulb(this, deviceCfg).forEach(function(accessory, index, arr){
+                if (deviceCfg['type'] == "MiPhilipsSmartBulb") {
+                    new MiPhilipsSmartBulb(this, deviceCfg).forEach(function(accessory, index, arr){
                         myAccessories.push(accessory);
                     });
-                } else if (deviceCfg['type'] == "TableLamp2") {
-                    new TableLamp2(this, deviceCfg).forEach(function(accessory, index, arr){
+                } else if (deviceCfg['type'] == "MiPhilipsTableLamp2") {
+                    new MiPhilipsTableLamp2(this, deviceCfg).forEach(function(accessory, index, arr){
                         myAccessories.push(accessory);
                     });
-                } else if (deviceCfg['type'] == "CeilingLamp") {
-                    new CeilingLamp(this, deviceCfg).forEach(function(accessory, index, arr){
+                } else if (deviceCfg['type'] == "MiPhilipsCeilingLamp") {
+                    new MiPhilipsCeilingLamp(this, deviceCfg).forEach(function(accessory, index, arr){
                         myAccessories.push(accessory);
                     });
                 } else {
