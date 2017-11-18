@@ -29,13 +29,13 @@ npm install -g miio homebridge-mi-philips-light
 "platforms": [{
     "platform": "MiPhilipsLightPlatform",
     "deviceCfgs": [{
-        "type": "MiSmartBulb",
+        "type": "MiPhilipsSmartBulb",
         "ip": "192.168.88.xx",
         "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
         "lightName": "living room bulb",
         "lightDisable": false
     }, {
-        "type": "MiTableLamp2",
+        "type": "MiPhilipsTableLamp2",
         "ip": "192.168.88.xx",
         "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
         "mainLightName": "living room table lamp",
@@ -44,7 +44,7 @@ npm install -g miio homebridge-mi-philips-light
         "eyecareSwitchName": "living room table lamp eyecare model",
         "eyecareSwitchDisable": false
     }, {
-        "type": "MiCeilingLamp",
+        "type": "MiPhilipsCeilingLamp",
         "ip": "192.168.88.xx",
         "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
         "lightName": "living room ceiling lamp",
