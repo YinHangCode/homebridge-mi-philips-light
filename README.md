@@ -12,9 +12,9 @@ Thanks for [nfarina](https://github.com/nfarina)(the author of [homebridge](http
 ![](https://raw.githubusercontent.com/YinHangCode/homebridge-mi-philips-light/master/images/CeilingLamp.jpg)
 
 ## Supported Devices
-1.SmartBulb(飞利浦智睿球泡灯)   
-2.TableLamp2(米家飞利浦智睿台灯二代)   
-3.CeilingLamp(飞利浦智睿吸顶灯)   
+1.MiPhilipsSmartBulb(米家飞利浦智睿球泡灯)   
+2.MiPhilipsTableLamp2(米家飞利浦智睿台灯二代)   
+3.MiPhilipsCeilingLamp(米家飞利浦智睿吸顶灯)   
 
 ## Installation
 1. Install HomeBridge, please follow it's [README](https://github.com/nfarina/homebridge/blob/master/README.md).   
