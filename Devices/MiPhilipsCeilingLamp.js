@@ -6,27 +6,27 @@ const miio = require('miio');
 var Accessory, PlatformAccessory, Service, Characteristic, UUIDGen;
 MiPhilipsCeilingLamp = function(platform, config) {
     this.init(platform, config);
-    
+
     Accessory = platform.Accessory;
     PlatformAccessory = platform.PlatformAccessory;
     Service = platform.Service;
     Characteristic = platform.Characteristic;
     UUIDGen = platform.UUIDGen;
-    
+
     this.device = new miio.Device({
         address: this.config['ip'],
         token: this.config['token']
     });
-    
+
     this.accessories = {};
     if(this.config['lightName'] && this.config['lightName'] != "") {
         this.accessories['LightAccessory'] = new MiPhilipsCeilingLampLight(this);
     }
     var accessoriesArr = this.obj2array(this.accessories);
-    
+
     this.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]Initializing " + this.config["type"] + " device: " + this.config["ip"] + ", accessories size: " + accessoriesArr.length);
-    
-    
+
+
     return accessoriesArr;
 }
 inherits(MiPhilipsCeilingLamp, Base);
@@ -58,7 +58,7 @@ MiPhilipsCeilingLampLight.prototype.getServices = function() {
         .setCharacteristic(Characteristic.Model, "Philips Ceiling Lamp")
         .setCharacteristic(Characteristic.SerialNumber, tokensan);
     services.push(infoService);
-    
+
     var CeilingLampService = this.Lampservice = new Service.Lightbulb(this.name, "MiPhilipsCeilingLamp");
     var CeilingLampOnCharacteristic = CeilingLampService.getCharacteristic(Characteristic.On);
     CeilingLampService

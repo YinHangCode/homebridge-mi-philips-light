@@ -1,7 +1,7 @@
 {
   "name": "homebridge-mi-philips-light",
-  "version": "0.2.3",
-  "description": "XiaoMi Philips light plugins for HomeBridge(https://github.com/nfarina/homebridge).",
+  "version": "0.2.4",
+  "description": "XiaoMi Philips light plugins for HomeBridge",
   "keywords": [
     "homebridge-plugin",
     "xiaomi",
