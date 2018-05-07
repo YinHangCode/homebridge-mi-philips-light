@@ -83,6 +83,8 @@ miio --discover --sync
 Wait until you get output.   
 For more information about token, please refer to [OpenMiHome](https://github.com/OpenMiHome/mihome-binary-protocol) and [miio](https://github.com/aholstenson/miio).   
 ## Version Logs
+### 0.2.4 (2018-5-06 @RandomMetalhead Fork)
+1.added night mode for Philips Ceiling lamp, when set to 1%.  
 ### 0.2.3 (2018-02-10)
 1.update 'package.json'.   
 ### 0.2.2 (2017-11-18)
