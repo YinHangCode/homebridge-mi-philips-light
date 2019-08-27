@@ -1,6 +1,6 @@
 {
-  "name": "@randommetalhead/homebridge-mi-philips-light-fork",
-  "version": "0.2.4",
+  "name": "homebridge-mi-philips-light-fork",
+  "version": "0.2.7",
   "description": "XiaoMi Philips light RandomMetalhead Fork",
   "keywords": [
     "homebridge-plugin",
