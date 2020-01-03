@@ -1,6 +1,6 @@
 {
   "name": "homebridge-mi-philips-light-fork",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "XiaoMi Philips light RandomMetalhead Fork",
   "keywords": [
     "homebridge-plugin",
@@ -18,16 +18,16 @@
     "url": "https://github.com/RandomMetalhead/homebridge-mi-philips-light/issues"
   },
   "engines": {
-    "node": ">=7.0.0",
-    "homebridge": ">=0.4.1"
+    "homebridge": ">=0.4.30",
+    "node": ">=7.6.0"
   },
   "dependencies": {
-    "miio": "0.14.1",
+    "miio": "0.15.6",
     "npm": "^6.0.0"
   },
   "main": "index.js",
   "devDependencies": {
-    "homebridge": ">=0.2.0"
+    "homebridge": ">=0.4.30"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
