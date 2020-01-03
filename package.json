@@ -1,6 +1,6 @@
 {
   "name": "homebridge-mi-philips-light-fork",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "XiaoMi Philips light RandomMetalhead Fork",
   "keywords": [
     "homebridge-plugin",
@@ -22,7 +22,7 @@
     "node": ">=7.6.0"
   },
   "dependencies": {
-    "miio": "0.15.6",
+    "miio": "0.14.1",
     "npm": "^6.0.0"
   },
   "main": "index.js",
