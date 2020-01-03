@@ -1,6 +1,8 @@
 # homebridge-mi-philips-light
 This is a fork of https://github.com/YinHangCode/homebridge-mi-philips-light with added night mode for Philips Ceiling lamps. 
 ## Version Logs
+### 0.2.9 (2018-5-06 @RandomMetalhead Fork)
+1.Updated dependencies
 ### 0.2.4 (2018-5-06 @RandomMetalhead Fork)
 1.added night mode for Philips Ceiling lamp, when set to 1%.  
 ### 0.2.3 (2018-02-10)
