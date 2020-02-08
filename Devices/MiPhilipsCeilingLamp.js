@@ -6,27 +6,27 @@ const miio = require('miio');
 var Accessory, PlatformAccessory, Service, Characteristic, UUIDGen;
 MiPhilipsCeilingLamp = function(platform, config) {
     this.init(platform, config);
-    
+
     Accessory = platform.Accessory;
     PlatformAccessory = platform.PlatformAccessory;
     Service = platform.Service;
     Characteristic = platform.Characteristic;
     UUIDGen = platform.UUIDGen;
-    
+
     this.device = new miio.Device({
         address: this.config['ip'],
         token: this.config['token']
     });
-    
+
     this.accessories = {};
     if(this.config['lightName'] && this.config['lightName'] != "") {
         this.accessories['LightAccessory'] = new MiPhilipsCeilingLampLight(this);
     }
     var accessoriesArr = this.obj2array(this.accessories);
-    
+
     this.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]Initializing " + this.config["type"] + " device: " + this.config["ip"] + ", accessories size: " + accessoriesArr.length);
-    
-    
+
+
     return accessoriesArr;
 }
 inherits(MiPhilipsCeilingLamp, Base);
@@ -58,16 +58,16 @@ MiPhilipsCeilingLampLight.prototype.getServices = function() {
         .setCharacteristic(Characteristic.Model, "Philips Ceiling Lamp")
         .setCharacteristic(Characteristic.SerialNumber, tokensan);
     services.push(infoService);
-    
+
     var CeilingLampService = this.Lampservice = new Service.Lightbulb(this.name, "MiPhilipsCeilingLamp");
     var CeilingLampOnCharacteristic = CeilingLampService.getCharacteristic(Characteristic.On);
-    CeilingLampService
-        .addCharacteristic(Characteristic.ColorTemperature)
-        .setProps({
-            minValue: 50,
-            maxValue: 400,
-            minStep: 1
-        });
+//    CeilingLampService
+//        .addCharacteristic(Characteristic.ColorTemperature)
+//        .setProps({
+//            minValue: 50,
+//            maxValue: 400,
+//            minStep: 1
+//        });
     CeilingLampOnCharacteristic
         .on('get', function(callback) {
             this.device.call("get_prop", ["power"]).then(result => {
@@ -103,7 +103,19 @@ MiPhilipsCeilingLampLight.prototype.getServices = function() {
             });
         }.bind(this))
         .on('set', function(value, callback) {
-            if(value > 0) {
+            if(value == 1) {
+                this.device.call("set_bricct", [0,0]).then(result => {
+                    that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]MiPhilipsCeilingLamp - activating night mode: " + result);
+                    if(result[0] === "ok") {
+                        callback(null);
+                    } else {
+                        callback(new Error(result[0]));
+                    }
+                }).catch(function(err) {
+                    that.platform.log.error("[MiPhilipsLightPlatform][ERROR]MiPhilipsCeilingLamp - activating night mode Error: " + err);
+                    callback(err);
+                });
+            } else if(value > 0) {
                 this.device.call("set_bright", [value]).then(result => {
                     that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]MiPhilipsCeilingLamp - setBrightness Result: " + result);
                     if(result[0] === "ok") {
@@ -112,44 +124,44 @@ MiPhilipsCeilingLampLight.prototype.getServices = function() {
                         callback(new Error(result[0]));
                     }
                 }).catch(function(err) {
-                    that.platform.log.error("[MiPhilipsLightPlatform][ERROR]MiPhilipsCeilingLamp - setBrightness Error: " + err);
-                    callback(err);
+                        that.platform.log.error("[MiPhilipsLightPlatform][ERROR]MiPhilipsCeilingLamp - setBrightness Error: " + err);
+                        callback(err);
                 });
             } else {
                 callback(null);
             }
         }.bind(this));
-    CeilingLampService
-        .getCharacteristic(Characteristic.ColorTemperature)
-        .on('get', function(callback) {
-            this.device.call("get_prop", ["cct"]).then(result => {
-                that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]MiPhilipsCeilingLamp - getColorTemperature: " + result);
-                callback(null, result[0] * 350);
-            }).catch(function(err) {
-                that.platform.log.error("[MiPhilipsLightPlatform][ERROR]MiPhilipsCeilingLamp - getColorTemperature Error: " + err);
-                callback(err);
-            });
-        }.bind(this))
-        .on('set', function(value,callback) {
-            value = value - 50;
-            value = value / 350 * 100;
-            value = Math.round(100 - value);
-            if(value == 0) {
-                value = 1;
-            }
-            that.platform.log.debug("[MiPhilipsLightPlatform]MiPhilipsCeilingLamp - setColorTemperature : " + value + "%");
-            this.device.call("set_cct", [value]).then(result => {
-                that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]MiPhilipsCeilingLamp - setColorTemperature Result: " + result);
-                if(result[0] === "ok") {
-                    callback(null);
-                } else {
-                    callback(new Error(result[0]));
-                }
-            }).catch(function(err) {
-                that.platform.log.error("[MiPhilipsLightPlatform][ERROR]MiPhilipsCeilingLamp - setColorTemperature Error: " + err);
-                callback(err);
-            });
-        }.bind(this));
+//    CeilingLampService
+//        .getCharacteristic(Characteristic.ColorTemperature)
+//        .on('get', function(callback) {
+//            this.device.call("get_prop", ["cct"]).then(result => {
+//                that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]MiPhilipsCeilingLamp - getColorTemperature: " + result);
+//                callback(null, result[0] * 350);
+//            }).catch(function(err) {
+//                that.platform.log.error("[MiPhilipsLightPlatform][ERROR]MiPhilipsCeilingLamp - getColorTemperature Error: " + err);
+//                callback(err);
+//            });
+//        }.bind(this))
+//        .on('set', function(value,callback) {
+//            value = value - 50;
+//            value = value / 350 * 100;
+//            value = Math.round(100 - value);
+//            if(value == 0) {
+//                value = 1;
+//            }
+//            that.platform.log.debug("[MiPhilipsLightPlatform]MiPhilipsCeilingLamp - setColorTemperature : " + value + "%");
+//            this.device.call("set_cct", [value]).then(result => {
+//                that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]MiPhilipsCeilingLamp - setColorTemperature Result: " + result);
+//                if(result[0] === "ok") {
+//                    callback(null);
+//                } else {
+//                    callback(new Error(result[0]));
+//                }
+//            }).catch(function(err) {
+//                that.platform.log.error("[MiPhilipsLightPlatform][ERROR]MiPhilipsCeilingLamp - setColorTemperature Error: " + err);
+//                callback(err);
+//            });
+//        }.bind(this));
     services.push(CeilingLampService);
     return services;
 }
