@@ -1,0 +1,816 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "examples": [
+        {
+            "pluginAlias": "MiPhilipsLightPlatform",
+            "pluginType": "platform",
+            "singular": false,
+            "schema": {
+                "deviceCfgs": {
+                    "title": "Devices",
+                    "type": "array",
+                    "items": {
+                        "title": "Device",
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "title": "Light Model",
+                                "type": "string",
+                                "required": true,
+                                "oneOf": [
+                                    {
+                                        "title": "MiPhilipsSmartBulb",
+                                        "enum": [
+                                            "MiPhilipsSmartBulb"
+                                        ]
+                                    },
+                                    {
+                                        "title": "MiPhilipsTableLamp2",
+                                        "enum": [
+                                            "MiPhilipsTableLamp2"
+                                        ]
+                                    },
+                                    {
+                                        "title": "MiPhilipsCeilingLamp",
+                                        "enum": [
+                                            "MiPhilipsCeilingLamp"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "ip": {
+                                "title": "IP Address",
+                                "type": "string",
+                                "required": true,
+                                "format": "ipv4"
+                            },
+                            "token": {
+                                "title": "Token",
+                                "type": "string",
+                                "required": true
+                            },
+                            "lightName": {
+                                "title": "Name",
+                                "type": "string",
+                                "required": true
+                            },
+                            "lightDisable": {
+                                "title": "Disabled",
+                                "type": "boolean",
+                                "default": false
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "required": [
+        "pluginAlias",
+        "pluginType",
+        "singular",
+        "schema"
+    ],
+    "additionalProperties": true,
+    "properties": {
+        "pluginAlias": {
+            "$id": "#/properties/pluginAlias",
+            "type": "string",
+            "title": "The pluginAlias schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "MiPhilipsLightPlatform"
+            ]
+        },
+        "pluginType": {
+            "$id": "#/properties/pluginType",
+            "type": "string",
+            "title": "The pluginType schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "platform"
+            ]
+        },
+        "singular": {
+            "$id": "#/properties/singular",
+            "type": "boolean",
+            "title": "The singular schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": false,
+            "examples": [
+                false
+            ]
+        },
+        "schema": {
+            "$id": "#/properties/schema",
+            "type": "object",
+            "title": "The schema schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "deviceCfgs": {
+                        "title": "Devices",
+                        "type": "array",
+                        "items": {
+                            "title": "Device",
+                            "type": "object",
+                            "properties": {
+                                "type": {
+                                    "title": "Light Model",
+                                    "type": "string",
+                                    "required": true,
+                                    "oneOf": [
+                                        {
+                                            "title": "MiPhilipsSmartBulb",
+                                            "enum": [
+                                                "MiPhilipsSmartBulb"
+                                            ]
+                                        },
+                                        {
+                                            "title": "MiPhilipsTableLamp2",
+                                            "enum": [
+                                                "MiPhilipsTableLamp2"
+                                            ]
+                                        },
+                                        {
+                                            "title": "MiPhilipsCeilingLamp",
+                                            "enum": [
+                                                "MiPhilipsCeilingLamp"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "ip": {
+                                    "title": "IP Address",
+                                    "type": "string",
+                                    "required": true,
+                                    "format": "ipv4"
+                                },
+                                "token": {
+                                    "title": "Token",
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "lightName": {
+                                    "title": "Name",
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "lightDisable": {
+                                    "title": "Disabled",
+                                    "type": "boolean",
+                                    "default": false
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "required": [
+                "deviceCfgs"
+            ],
+            "additionalProperties": true,
+            "properties": {
+                "deviceCfgs": {
+                    "$id": "#/properties/schema/properties/deviceCfgs",
+                    "type": "object",
+                    "title": "The deviceCfgs schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": {},
+                    "examples": [
+                        {
+                            "title": "Devices",
+                            "type": "array",
+                            "items": {
+                                "title": "Device",
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "title": "Light Model",
+                                        "type": "string",
+                                        "required": true,
+                                        "oneOf": [
+                                            {
+                                                "title": "MiPhilipsSmartBulb",
+                                                "enum": [
+                                                    "MiPhilipsSmartBulb"
+                                                ]
+                                            },
+                                            {
+                                                "title": "MiPhilipsTableLamp2",
+                                                "enum": [
+                                                    "MiPhilipsTableLamp2"
+                                                ]
+                                            },
+                                            {
+                                                "title": "MiPhilipsCeilingLamp",
+                                                "enum": [
+                                                    "MiPhilipsCeilingLamp"
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    "ip": {
+                                        "title": "IP Address",
+                                        "type": "string",
+                                        "required": true,
+                                        "format": "ipv4"
+                                    },
+                                    "token": {
+                                        "title": "Token",
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "lightName": {
+                                        "title": "Name",
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "lightDisable": {
+                                        "title": "Disabled",
+                                        "type": "boolean",
+                                        "default": false
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "required": [
+                        "title",
+                        "type",
+                        "items"
+                    ],
+                    "additionalProperties": true,
+                    "properties": {
+                        "title": {
+                            "$id": "#/properties/schema/properties/deviceCfgs/properties/title",
+                            "type": "string",
+                            "title": "The title schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": "",
+                            "examples": [
+                                "Devices"
+                            ]
+                        },
+                        "type": {
+                            "$id": "#/properties/schema/properties/deviceCfgs/properties/type",
+                            "type": "string",
+                            "title": "The type schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": "",
+                            "examples": [
+                                "array"
+                            ]
+                        },
+                        "items": {
+                            "$id": "#/properties/schema/properties/deviceCfgs/properties/items",
+                            "type": "object",
+                            "title": "The items schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": {},
+                            "examples": [
+                                {
+                                    "title": "Device",
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "title": "Light Model",
+                                            "type": "string",
+                                            "required": true,
+                                            "oneOf": [
+                                                {
+                                                    "title": "MiPhilipsSmartBulb",
+                                                    "enum": [
+                                                        "MiPhilipsSmartBulb"
+                                                    ]
+                                                },
+                                                {
+                                                    "title": "MiPhilipsTableLamp2",
+                                                    "enum": [
+                                                        "MiPhilipsTableLamp2"
+                                                    ]
+                                                },
+                                                {
+                                                    "title": "MiPhilipsCeilingLamp",
+                                                    "enum": [
+                                                        "MiPhilipsCeilingLamp"
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        "ip": {
+                                            "title": "IP Address",
+                                            "type": "string",
+                                            "required": true,
+                                            "format": "ipv4"
+                                        },
+                                        "token": {
+                                            "title": "Token",
+                                            "type": "string",
+                                            "required": true
+                                        },
+                                        "lightName": {
+                                            "title": "Name",
+                                            "type": "string",
+                                            "required": true
+                                        },
+                                        "lightDisable": {
+                                            "title": "Disabled",
+                                            "type": "boolean",
+                                            "default": false
+                                        }
+                                    }
+                                }
+                            ],
+                            "required": [
+                                "title",
+                                "type",
+                                "properties"
+                            ],
+                            "additionalProperties": true,
+                            "properties": {
+                                "title": {
+                                    "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/title",
+                                    "type": "string",
+                                    "title": "The title schema",
+                                    "description": "An explanation about the purpose of this instance.",
+                                    "default": "",
+                                    "examples": [
+                                        "Device"
+                                    ]
+                                },
+                                "type": {
+                                    "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/type",
+                                    "type": "string",
+                                    "title": "The type schema",
+                                    "description": "An explanation about the purpose of this instance.",
+                                    "default": "",
+                                    "examples": [
+                                        "object"
+                                    ]
+                                },
+                                "properties": {
+                                    "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/properties",
+                                    "type": "object",
+                                    "title": "The properties schema",
+                                    "description": "An explanation about the purpose of this instance.",
+                                    "default": {},
+                                    "examples": [
+                                        {
+                                            "type": {
+                                                "title": "Light Model",
+                                                "type": "string",
+                                                "required": true,
+                                                "oneOf": [
+                                                    {
+                                                        "title": "MiPhilipsSmartBulb",
+                                                        "enum": [
+                                                            "MiPhilipsSmartBulb"
+                                                        ]
+                                                    },
+                                                    {
+                                                        "title": "MiPhilipsTableLamp2",
+                                                        "enum": [
+                                                            "MiPhilipsTableLamp2"
+                                                        ]
+                                                    },
+                                                    {
+                                                        "title": "MiPhilipsCeilingLamp",
+                                                        "enum": [
+                                                            "MiPhilipsCeilingLamp"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            "ip": {
+                                                "title": "IP Address",
+                                                "type": "string",
+                                                "required": true,
+                                                "format": "ipv4"
+                                            },
+                                            "token": {
+                                                "title": "Token",
+                                                "type": "string",
+                                                "required": true
+                                            },
+                                            "lightName": {
+                                                "title": "Name",
+                                                "type": "string",
+                                                "required": true
+                                            },
+                                            "lightDisable": {
+                                                "title": "Disabled",
+                                                "type": "boolean",
+                                                "default": false
+                                            }
+                                        }
+                                    ],
+                                    "required": [
+                                        "type",
+                                        "ip",
+                                        "token",
+                                        "lightName",
+                                        "lightDisable"
+                                    ],
+                                    "additionalProperties": true,
+                                    "properties": {
+                                        "type": {
+                                            "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/properties/properties/type",
+                                            "type": "object",
+                                            "title": "The type schema",
+                                            "description": "An explanation about the purpose of this instance.",
+                                            "default": {},
+                                            "examples": [
+                                                {
+                                                    "title": "Light Model",
+                                                    "type": "string",
+                                                    "required": true,
+                                                    "oneOf": [
+                                                        {
+                                                            "title": "MiPhilipsSmartBulb",
+                                                            "enum": [
+                                                                "MiPhilipsSmartBulb"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "title": "MiPhilipsTableLamp2",
+                                                            "enum": [
+                                                                "MiPhilipsTableLamp2"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "title": "MiPhilipsCeilingLamp",
+                                                            "enum": [
+                                                                "MiPhilipsCeilingLamp"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "required": [
+                                                "title",
+                                                "type",
+                                                "required",
+                                                "oneOf"
+                                            ],
+                                            "additionalProperties": true,
+                                            "properties": {
+                                                "title": {
+                                                    "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/properties/properties/type/properties/title",
+                                                    "type": "string",
+                                                    "title": "The title schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": "",
+                                                    "examples": [
+                                                        "Light Model"
+                                                    ]
+                                                },
+                                                "type": {
+                                                    "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/properties/properties/type/properties/type",
+                                                    "type": "string",
+                                                    "title": "The type schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": "",
+                                                    "examples": [
+                                                        "string"
+                                                    ]
+                                                },
+                                                "required": {
+                                                    "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/properties/properties/type/properties/required",
+                                                    "type": "boolean",
+                                                    "title": "The required schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": false,
+                                                    "examples": [
+                                                        true
+                                                    ]
+                                                },
+                                                "oneOf": {
+                                                    "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/properties/properties/type/properties/oneOf",
+                                                    "type": "array",
+                                                    "title": "The oneOf schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": [],
+                                                    "examples": [
+                                                        [
+                                                            {
+                                                                "title": "MiPhilipsSmartBulb",
+                                                                "enum": [
+                                                                    "MiPhilipsSmartBulb"
+                                                                ]
+                                                            },
+                                                            {
+                                                                "title": "MiPhilipsTableLamp2",
+                                                                "enum": [
+                                                                    "MiPhilipsTableLamp2"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    ],
+                                                    "additionalItems": true,
+                                                    "items": {
+                                                        "anyOf": [
+                                                            {
+                                                                "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/properties/properties/type/properties/oneOf/items/anyOf/0",
+                                                                "type": "object",
+                                                                "title": "The first anyOf schema",
+                                                                "description": "An explanation about the purpose of this instance.",
+                                                                "default": {},
+                                                                "examples": [
+                                                                    {
+                                                                        "title": "MiPhilipsSmartBulb",
+                                                                        "enum": [
+                                                                            "MiPhilipsSmartBulb"
+                                                                        ]
+                                                                    }
+                                                                ],
+                                                                "required": [
+                                                                    "title",
+                                                                    "enum"
+                                                                ],
+                                                                "additionalProperties": true,
+                                                                "properties": {
+                                                                    "title": {
+                                                                        "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/properties/properties/type/properties/oneOf/items/anyOf/0/properties/title",
+                                                                        "type": "string",
+                                                                        "title": "The title schema",
+                                                                        "description": "An explanation about the purpose of this instance.",
+                                                                        "default": "",
+                                                                        "examples": [
+                                                                            "MiPhilipsSmartBulb"
+                                                                        ]
+                                                                    },
+                                                                    "enum": {
+                                                                        "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/properties/properties/type/properties/oneOf/items/anyOf/0/properties/enum",
+                                                                        "type": "array",
+                                                                        "title": "The enum schema",
+                                                                        "description": "An explanation about the purpose of this instance.",
+                                                                        "default": [],
+                                                                        "examples": [
+                                                                            [
+                                                                                "MiPhilipsSmartBulb"
+                                                                            ]
+                                                                        ],
+                                                                        "additionalItems": true,
+                                                                        "items": {
+                                                                            "anyOf": [
+                                                                                {
+                                                                                    "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/properties/properties/type/properties/oneOf/items/anyOf/0/properties/enum/items/anyOf/0",
+                                                                                    "type": "string",
+                                                                                    "title": "The first anyOf schema",
+                                                                                    "description": "An explanation about the purpose of this instance.",
+                                                                                    "default": "",
+                                                                                    "examples": [
+                                                                                        "MiPhilipsSmartBulb"
+                                                                                    ]
+                                                                                }
+                                                                            ],
+                                                                            "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/properties/properties/type/properties/oneOf/items/anyOf/0/properties/enum/items"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        ],
+                                                        "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/properties/properties/type/properties/oneOf/items"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "ip": {
+                                            "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/properties/properties/ip",
+                                            "type": "object",
+                                            "title": "The ip schema",
+                                            "description": "An explanation about the purpose of this instance.",
+                                            "default": {},
+                                            "examples": [
+                                                {
+                                                    "title": "IP Address",
+                                                    "type": "string",
+                                                    "required": true,
+                                                    "format": "ipv4"
+                                                }
+                                            ],
+                                            "required": [
+                                                "title",
+                                                "type",
+                                                "required",
+                                                "format"
+                                            ],
+                                            "additionalProperties": true,
+                                            "properties": {
+                                                "title": {
+                                                    "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/properties/properties/ip/properties/title",
+                                                    "type": "string",
+                                                    "title": "The title schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": "",
+                                                    "examples": [
+                                                        "IP Address"
+                                                    ]
+                                                },
+                                                "type": {
+                                                    "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/properties/properties/ip/properties/type",
+                                                    "type": "string",
+                                                    "title": "The type schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": "",
+                                                    "examples": [
+                                                        "string"
+                                                    ]
+                                                },
+                                                "required": {
+                                                    "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/properties/properties/ip/properties/required",
+                                                    "type": "boolean",
+                                                    "title": "The required schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": false,
+                                                    "examples": [
+                                                        true
+                                                    ]
+                                                },
+                                                "format": {
+                                                    "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/properties/properties/ip/properties/format",
+                                                    "type": "string",
+                                                    "title": "The format schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": "",
+                                                    "examples": [
+                                                        "ipv4"
+                                                    ]
+                                                }
+                                            }
+                                        },
+                                        "token": {
+                                            "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/properties/properties/token",
+                                            "type": "object",
+                                            "title": "The token schema",
+                                            "description": "An explanation about the purpose of this instance.",
+                                            "default": {},
+                                            "examples": [
+                                                {
+                                                    "title": "Token",
+                                                    "type": "string",
+                                                    "required": true
+                                                }
+                                            ],
+                                            "required": [
+                                                "title",
+                                                "type",
+                                                "required"
+                                            ],
+                                            "additionalProperties": true,
+                                            "properties": {
+                                                "title": {
+                                                    "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/properties/properties/token/properties/title",
+                                                    "type": "string",
+                                                    "title": "The title schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": "",
+                                                    "examples": [
+                                                        "Token"
+                                                    ]
+                                                },
+                                                "type": {
+                                                    "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/properties/properties/token/properties/type",
+                                                    "type": "string",
+                                                    "title": "The type schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": "",
+                                                    "examples": [
+                                                        "string"
+                                                    ]
+                                                },
+                                                "required": {
+                                                    "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/properties/properties/token/properties/required",
+                                                    "type": "boolean",
+                                                    "title": "The required schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": false,
+                                                    "examples": [
+                                                        true
+                                                    ]
+                                                }
+                                            }
+                                        },
+                                        "lightName": {
+                                            "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/properties/properties/lightName",
+                                            "type": "object",
+                                            "title": "The lightName schema",
+                                            "description": "An explanation about the purpose of this instance.",
+                                            "default": {},
+                                            "examples": [
+                                                {
+                                                    "title": "Name",
+                                                    "type": "string",
+                                                    "required": true
+                                                }
+                                            ],
+                                            "required": [
+                                                "title",
+                                                "type",
+                                                "required"
+                                            ],
+                                            "additionalProperties": true,
+                                            "properties": {
+                                                "title": {
+                                                    "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/properties/properties/lightName/properties/title",
+                                                    "type": "string",
+                                                    "title": "The title schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": "",
+                                                    "examples": [
+                                                        "Name"
+                                                    ]
+                                                },
+                                                "type": {
+                                                    "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/properties/properties/lightName/properties/type",
+                                                    "type": "string",
+                                                    "title": "The type schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": "",
+                                                    "examples": [
+                                                        "string"
+                                                    ]
+                                                },
+                                                "required": {
+                                                    "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/properties/properties/lightName/properties/required",
+                                                    "type": "boolean",
+                                                    "title": "The required schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": false,
+                                                    "examples": [
+                                                        true
+                                                    ]
+                                                }
+                                            }
+                                        },
+                                        "lightDisable": {
+                                            "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/properties/properties/lightDisable",
+                                            "type": "object",
+                                            "title": "The lightDisable schema",
+                                            "description": "An explanation about the purpose of this instance.",
+                                            "default": {},
+                                            "examples": [
+                                                {
+                                                    "title": "Disabled",
+                                                    "type": "boolean",
+                                                    "default": false
+                                                }
+                                            ],
+                                            "required": [
+                                                "title",
+                                                "type",
+                                                "default"
+                                            ],
+                                            "additionalProperties": true,
+                                            "properties": {
+                                                "title": {
+                                                    "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/properties/properties/lightDisable/properties/title",
+                                                    "type": "string",
+                                                    "title": "The title schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": "",
+                                                    "examples": [
+                                                        "Disabled"
+                                                    ]
+                                                },
+                                                "type": {
+                                                    "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/properties/properties/lightDisable/properties/type",
+                                                    "type": "string",
+                                                    "title": "The type schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": "",
+                                                    "examples": [
+                                                        "boolean"
+                                                    ]
+                                                },
+                                                "default": {
+                                                    "$id": "#/properties/schema/properties/deviceCfgs/properties/items/properties/properties/properties/lightDisable/properties/default",
+                                                    "type": "boolean",
+                                                    "title": "The default schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": false,
+                                                    "examples": [
+                                                        false
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
