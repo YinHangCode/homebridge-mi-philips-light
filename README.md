@@ -82,7 +82,16 @@ miio --discover --sync
 ```
 Wait until you get output.   
 For more information about token, please refer to [OpenMiHome](https://github.com/OpenMiHome/mihome-binary-protocol) and [miio](https://github.com/aholstenson/miio).   
+
+### Homebridge-Config-UI Support
+
+This plugin implements UI support for Homebridge-Config-UI. The schema for this is stored in config.schema.json. An easily-readable version is stored in config.schema_base.json, and can be converted into the JSON Schema format [here](https://www.jsonschema.net/home).
+
 ## Version Logs
+### 0.3 (2020-05-27)
+1. Added IP address to logs.
+2. Added Homebridge-Config-UI support.
+
 ### 0.2.3 (2018-02-10)
 1.update 'package.json'.   
 ### 0.2.2 (2017-11-18)

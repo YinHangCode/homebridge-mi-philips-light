@@ -1,0 +1,56 @@
+{
+    "pluginAlias": "MiPhilipsLightPlatform",
+    "pluginType": "platform",
+    "singular": false,
+    "schema": {
+        "deviceCfgs": {
+            "title": "Devices",
+            "type": "array",
+            "items": {
+                "title": "Device",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "title": "Light Model",
+                        "type": "string",
+                        "required": true,
+                        "oneOf": [{
+                                "title": "MiPhilipsSmartBulb",
+                                "enum": ["MiPhilipsSmartBulb"]
+                            },
+                            {
+                                "title": "MiPhilipsTableLamp2",
+                                "enum": ["MiPhilipsTableLamp2"]
+                            },
+                            {
+                                "title": "MiPhilipsCeilingLamp",
+                                "enum": ["MiPhilipsCeilingLamp"]
+                            }
+                        ]
+                    },
+                    "ip": {
+                        "title": "IP Address",
+                        "type": "string",
+                        "required": true,
+                        "format": "ipv4"
+                    },
+                    "token": {
+                        "title": "Token",
+                        "type": "string",
+                        "required": true
+                    },
+                    "lightName": {
+                        "title": "Name",
+                        "type": "string",
+                        "required": true
+                    },
+                    "lightDisable": {
+                        "title": "Disabled",
+                        "type": "boolean",
+                        "default": false
+                    }
+                }
+            }
+        }
+    }
+}
