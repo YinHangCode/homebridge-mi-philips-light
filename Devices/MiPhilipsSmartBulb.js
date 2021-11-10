@@ -131,9 +131,9 @@ MiPhilipsSmartBulbLight.prototype.getColorTemperature = function(callback) {
     this.device.call("get_prop", ["cct"]).then(result => {
         that.platform.log.debug("[MiPhilipsLightPlatform][DEBUG]MiPhilipsSmartBulb - Light - getColorTemperature: " + result);
         if (result[0] < 1) {
-            callback(null, result[0] * 350);   
+            callback(null, (400 - result[0] * 350));   
         }else{
-            callback(null, result[0]);
+            callback(null, (400 - result[0] * 3.5));
         }
     }).catch(function(err) {
         that.platform.log.error("[MiPhilipsLightPlatform][ERROR]MiPhilipsSmartBulb - Light - getColorTemperature Error: " + err);
