@@ -83,6 +83,8 @@ miio --discover --sync
 Wait until you get output.   
 For more information about token, please refer to [OpenMiHome](https://github.com/OpenMiHome/mihome-binary-protocol) and [miio](https://github.com/aholstenson/miio).   
 ## Version Logs
+### 0.2.4 (2021-11-10)
+1.bug fix on color temperature
 ### 0.2.3 (2018-02-10)
 1.update 'package.json'.   
 ### 0.2.2 (2017-11-18)
