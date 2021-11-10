@@ -60,7 +60,7 @@ MiPhilipsSmartBulbLight.prototype.getServices = function() {
         .addCharacteristic(Characteristic.ColorTemperature)
         .setProps({
             minValue: 50,
-            maxValue: 400,
+            maxValue: 5700,
             minStep: 1
         })
         .on('get', this.getColorTemperature.bind(this))
